@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.env/
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.nox/
+.tox/
+
+# PyInstaller
+*.spec
+
+# Jupyter
+.ipynb_checkpoints
+
+# Migrations / local DB / logs
+*.sqlite3
+*.log
+
+# Python packaging build artifacts
+dist/
+build/
+eggs/
+parts/
+sdist/
+var/
+
+# Misc
+*.swp
+*~
+Thumbs.db
+
+# data
+/data
