@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"      # Also run every day at 00:00 UTC
   workflow_dispatch:          # Allow manual trigger from GitHub UI
 
+permissions:
+  contents: write
+
 jobs:
   run-ingestion:
     runs-on: ubuntu-latest
