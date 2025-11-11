@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git -f add data/raw/geo/
+          git add --force data/raw/geo/
           git commit -m "Daily Last.fm data update: $(date -u)" || echo "No changes to commit"
           git push
