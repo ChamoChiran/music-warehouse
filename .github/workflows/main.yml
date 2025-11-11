@@ -31,7 +31,7 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
           # 🔹 Run the ingestion once, not the infinite scheduler loop
-          python -m src.lastfm_client
+          python -m src.utils.schedular.py
 
       - name: Commit and push new data
         run: |
