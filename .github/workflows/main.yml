@@ -1,12 +1,12 @@
 name: Last.fm Daily Ingestion
 
 on:
-  push:
-    branches:
-      - test-ingestion       # 👈 Run on pushes to this branch
   schedule:
     - cron: "0 0 * * *"      # Also run every day at 00:00 UTC
   workflow_dispatch:          # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write
 
 jobs:
   run-ingestion:
@@ -31,12 +31,12 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
           # 🔹 Run the ingestion once, not the infinite scheduler loop
-          python -m src.lastfm_client
+          python -m src.clients
 
       - name: Commit and push new data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/
+          git add --force data/raw/geo/
           git commit -m "Daily Last.fm data update: $(date -u)" || echo "No changes to commit"
           git push
