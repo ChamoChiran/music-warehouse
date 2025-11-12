@@ -30,13 +30,26 @@ jobs:
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
-          # 🔹 Run the ingestion once, not the infinite scheduler loop
+          # Run the ingestion once, not the infinite scheduler loop
           python -m src.clients
 
+      - name: Run Silver Transformation - Artists
+        run: |
+          python -m src.transform_data.transform_artists
+
+      - name: Run Silver Transformation - Tracks
+        run: |
+          python -m src.transform_data.transform_tracks
+
       - name: Commit and push new data
+
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          echo "Adding Bronze + Silver layer data..."
           git add --force data/raw/geo/
+          git add --force data/silver/geo/
+          
           git commit -m "Daily Last.fm data update: $(date -u)" || echo "No changes to commit"
           git push
