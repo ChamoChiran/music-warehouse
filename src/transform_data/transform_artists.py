@@ -100,11 +100,12 @@ def transform_json_data(
     combined_df = pd.concat(all_dfs)
     typer.echo(f"Combined dataframe shape: {combined_df.shape}")
 
+    output_dir = Path(output_dir / 'silver' / 'geo' / 'artists')
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Save as parquet
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = output_dir / 'silver' / 'geo' / 'artists' / f"artists_{timestamp}.parquet"
+    output_file = output_dir / f"artists_{timestamp}.parquet"
     combined_df.to_parquet(output_file, index=False)
 
     typer.secho(f"Saved combined parquet → {output_file}", fg=typer.colors.BRIGHT_GREEN)
